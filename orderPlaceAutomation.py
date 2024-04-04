@@ -4,8 +4,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
-#chroemdriver.exe file needs to be in the same folder
-service = Service(executable_path="chromedriver.exe")
+#path of chroemdriver.exe file
+service = Service(executable_path="C:/Program Files (x86)/chromedriver.exe")
 
 driver = webdriver.Chrome(service=service)
 
