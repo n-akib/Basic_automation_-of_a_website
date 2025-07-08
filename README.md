@@ -1,52 +1,120 @@
-**Selenium Automation Project**
-This repository contains automation scripts written in Python using the Selenium WebDriver. The scripts are designed for testing functionalities on the SauceDemo website.
+# 🤖 Basic Automation of a Website
 
-**Project Overview**
-The project includes the following scripts:
+This project demonstrates **UI test automation** using **Python** and **Selenium WebDriver**. It simulates common user actions such as logging in and registering on a website, making it a great base for automated testing practice or real-world use.
 
-orderPlaceAutomation.py: Automates the process of logging into the website, adding items to the cart, checking out, and placing an order.
-urlVerification.py: Verifies the URL of the SauceDemo website to ensure proper navigation.
-Prerequisites
-Before running the scripts, ensure you have the following installed:
+---
 
-Python (version 3.7 or higher)
-Selenium WebDriver
-Geckodriver (for Firefox browser)
-Firefox browser
+## 🚀 Features
 
+- 🔹 Automates login and registration workflows  
+- 🔹 Uses Selenium WebDriver for browser interaction  
+- 🔹 Targets elements using XPath, ID, or CSS selectors  
+- 🔹 Supports Chrome browser testing  
+- 🔹 Easy-to-understand Python scripts  
 
-Here’s a sample README.md for your project, based on the content of the uploaded files:
+---
 
-**Selenium Automation Project**
-This repository contains automation scripts written in Python using the Selenium WebDriver. The scripts are designed for testing functionalities on the SauceDemo website.
+## 🛠 Tech Stack
 
-**Project Overview**
-The project includes the following scripts:
+- **Python 3.x**  
+- **Selenium**  
+- **ChromeDriver**  
+- *(Optional)* **Pytest**  
+- *(Optional)* **virtualenv**
 
-orderPlaceAutomation.py: Automates the process of logging into the website, adding items to the cart, checking out, and placing an order.
-urlVerification.py: Verifies the URL of the SauceDemo website to ensure proper navigation.
+---
 
-**Prerequisites**
-Before running the scripts, ensure you have the following installed:
+## 📁 Project Structure
 
-Python (version 3.7 or higher)
-Selenium WebDriver
-Geckodriver (for Firefox browser)
-Firefox browser
+```
+Basic_automation_-of_a_website/
+├── login_test.py             # Script to automate login testing
+├── registration_test.py      # Script to automate registration flow
+└── README.md                 # Project documentation (this file)
+```
 
-**Usage**
-Running the orderPlaceAutomation.py Script
-Open the script and ensure the credentials for SauceDemo are correct:
+---
 
-Username: standard_user
-Password: secret_sauce
+## ✅ Prerequisites
 
-**Notes**
-The scripts are configured for the Firefox browser. To use a different browser (e.g., Chrome), update the WebDriver setup accordingly.
-Avoid hardcoding sensitive data (e.g., credentials) in scripts for security reasons.
+Before running the tests, ensure the following are installed:
 
-**Contributing**
-Contributions are welcome! Please create a pull request with a description of the changes.
+- Python 3.x  
+- Google Chrome browser  
+- ChromeDriver (must be in your system PATH)  
 
-**License**
-This project is licensed under the MIT License. See the LICENSE file for details.
+You can download ChromeDriver from:  
+https://sites.google.com/a/chromium.org/chromedriver/
+
+---
+
+## ⚙️ Setup Instructions
+
+1. **Clone the Repository**
+```bash
+git clone https://github.com/n-akib/Basic_automation_-of_a_website.git
+cd Basic_automation_-of_a_website
+```
+
+2. **Create a Virtual Environment (Recommended)**
+```bash
+python -m venv venv
+# On Windows
+venv\Scripts\activate
+# On Linux/macOS
+source venv/bin/activate
+```
+
+3. **Install Required Packages**
+```bash
+pip install selenium
+```
+
+---
+
+## ▶️ How to Run the Scripts
+
+After setup, simply run the scripts with:
+
+```bash
+python login_test.py
+```
+
+```bash
+python registration_test.py
+```
+
+Make sure to update the **URL** and form field selectors as needed, based on the site you're testing.
+
+---
+
+## 🔧 Customization
+
+You can adapt this project for other websites by:
+
+- Changing the `url` in each script  
+- Updating element locators (XPath, CSS selectors)  
+- Adding assertions or validations  
+- Incorporating frameworks like `pytest` for structured testing
+
+---
+
+## 💡 Future Improvements
+
+- [ ] Add Pytest support  
+- [ ] Add `waits` using `WebDriverWait` for more reliable execution  
+- [ ] Integrate logging and screenshots for test reporting
+
+---
+
+## 🧑‍💻 Author
+
+**Nagib Mahfuze Akib**  
+💼 [LinkedIn](https://www.linkedin.com/in/nagib-mahfuze-akib)  
+📬 n.mahfuze@gmail.com
+
+---
+
+## 🪪 License
+
+This project is licensed under the [MIT License](LICENSE).
