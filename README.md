@@ -1,26 +1,16 @@
-# 🤖 Basic Automation of a Website
+# 🤖 Sauce Demo — Selenium POM Automation
 
-This project demonstrates **UI test automation** using **Python** and **Selenium WebDriver**. It simulates common user actions such as logging in and registering on a website, making it a great base for automated testing practice or real-world use.
+Refactored automated testing framework for [saucedemo.com](https://www.saucedemo.com) using **Selenium 4 + pytest + Page Object Model (POM)**.
 
 ---
 
 ## 🚀 Features
 
-- 🔹 Automates login and registration workflows  
-- 🔹 Uses Selenium WebDriver for browser interaction  
-- 🔹 Targets elements using XPath, ID, or CSS selectors  
-- 🔹 Supports Chrome browser testing  
-- 🔹 Easy-to-understand Python scripts  
-
----
-
-## 🛠 Tech Stack
-
-- **Python 3.x**  
-- **Selenium**  
-- **ChromeDriver**  
-- *(Optional)* **Pytest**  
-- *(Optional)* **virtualenv**
+- 🔹 **Page Object Model (POM)** structure for clean separation of test logic and page interaction.
+- 🔹 **Selenium 4 & Python** utilizing native Selenium Manager to automatically download matching drivers.
+- 🔹 **Headless & Headful support** (runs Brave Browser by default on macOS, fully configurable).
+- 🔹 **Robust waits** (`WebDriverWait`) replacing flaky `time.sleep()`.
+- 🔹 **Beautiful HTML test reports** automatically generated after every run.
 
 ---
 
@@ -28,93 +18,84 @@ This project demonstrates **UI test automation** using **Python** and **Selenium
 
 ```
 Basic_automation_-of_a_website/
-├── login_test.py             # Script to automate login testing
-├── registration_test.py      # Script to automate registration flow
-└── README.md                 # Project documentation (this file)
+├── pages/
+│   ├── base_page.py        # Shared helper methods (click, type, wait)
+│   ├── login_page.py       # Login page actions & locators
+│   ├── inventory_page.py   # Products page actions & locators
+│   ├── cart_page.py        # Cart page actions & locators
+│   └── checkout_page.py    # Checkout steps 1 & 2 + confirmation
+├── tests/
+│   ├── test_login.py       # 5 login scenarios
+│   ├── test_cart.py        # 3 cart scenarios
+│   └── test_checkout.py    # 3 checkout/order scenarios
+├── utils/
+│   └── driver_factory.py   # Webdriver configuration (configured for Brave/Chrome)
+├── conftest.py             # pytest fixtures (driver, logged_in_driver)
+├── pytest.ini              # pytest configuration & automatic HTML reporting
+└── requirements.txt        # Project dependencies
 ```
-
----
-
-## ✅ Prerequisites
-
-Before running the tests, ensure the following are installed:
-
-- Python 3.x  
-- Google Chrome browser  
-- ChromeDriver (must be in your system PATH)  
-
-You can download ChromeDriver from:  
-https://sites.google.com/a/chromium.org/chromedriver/
 
 ---
 
 ## ⚙️ Setup Instructions
 
-1. **Clone the Repository**
+### 1. Set Up Virtual Environment
 ```bash
-git clone https://github.com/n-akib/Basic_automation_-of_a_website.git
-cd Basic_automation_-of_a_website
-```
+# Create a virtual environment
+python3 -m venv venv
 
-2. **Create a Virtual Environment (Recommended)**
-```bash
-python -m venv venv
-# On Windows
-venv\Scripts\activate
-# On Linux/macOS
+# Activate on macOS/Linux:
 source venv/bin/activate
 ```
 
-3. **Install Required Packages**
+### 2. Install Dependencies
 ```bash
-pip install selenium
+pip install -r requirements.txt
 ```
 
 ---
 
-## ▶️ How to Run the Scripts
+## ▶️ Running Tests
 
-After setup, simply run the scripts with:
+All tests are configured to run **headless** by default to make background executions faster and cleaner.
 
+### Run All Tests
 ```bash
-python login_test.py
+./venv/bin/pytest
 ```
 
+### Run a Specific Test File
 ```bash
-python registration_test.py
+./venv/bin/pytest tests/test_login.py
 ```
 
-Make sure to update the **URL** and form field selectors as needed, based on the site you're testing.
+### Run a Specific Test Case
+```bash
+./venv/bin/pytest tests/test_login.py::TestLogin::test_valid_login_redirects_to_inventory
+```
 
 ---
 
-## 🔧 Customization
+## 📊 Viewing HTML Reports
 
-You can adapt this project for other websites by:
+After executing the tests, an interactive HTML report is automatically generated at the root of the project.
 
-- Changing the `url` in each script  
-- Updating element locators (XPath, CSS selectors)  
-- Adding assertions or validations  
-- Incorporating frameworks like `pytest` for structured testing
-
----
-
-## 💡 Future Improvements
-
-- [ ] Add Pytest support  
-- [ ] Add `waits` using `WebDriverWait` for more reliable execution  
-- [ ] Integrate logging and screenshots for test reporting
+To open the report from your terminal:
+```bash
+open report.html
+```
 
 ---
 
-## 🧑‍💻 Author
+## 🔧 Browser Customization
 
-**Nagib Mahfuze Akib**  
-💼 [LinkedIn](https://www.linkedin.com/in/nagib-mahfuze-akib)  
-📬 n.mahfuze@gmail.com
+The driver factory utilizes **Brave Browser** by default (Chromium-based) on macOS. You can customize the driver binary location or toggle headless mode:
 
----
-
-## 🪪 License
-
-This project is licensed under the [MIT License](LICENSE).
+- **Toggle Headless Mode:** Modify the `driver` fixture inside [conftest.py](file:///Users/nitrozeus/WORK/SauceDemoAutomation/Basic_automation_-of_a_website/conftest.py):
+  ```python
+  driver = get_driver(headless=False)  # Set to False to view the browser window
+  ```
+- **Change Browser Binary Path:** Update the binary path in [utils/driver_factory.py](file:///Users/nitrozeus/WORK/SauceDemoAutomation/Basic_automation_-of_a_website/utils/driver_factory.py):
+  ```python
+  options.binary_location = "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
+  ```
