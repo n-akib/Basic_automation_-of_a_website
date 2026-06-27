@@ -85,6 +85,9 @@ To open the report from your terminal:
 open report.html
 ```
 
+### Report Screenshot
+![HTML Report Screenshot](assets/report_screenshot.png)
+
 ---
 
 ## 🔧 Browser Customization

@@ -3,6 +3,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 
+import time
+
 class BasePage:
     TIMEOUT = 10
 
@@ -11,9 +13,23 @@ class BasePage:
         self.wait = WebDriverWait(driver, self.TIMEOUT)
 
     def click(self, locator):
+        for _ in range(3):
+            try:
+                self.wait.until(EC.element_to_be_clickable(locator)).click()
+                return
+            except Exception:
+                time.sleep(0.5)
         self.wait.until(EC.element_to_be_clickable(locator)).click()
 
     def type(self, locator, text):
+        for _ in range(3):
+            try:
+                element = self.wait.until(EC.element_to_be_clickable(locator))
+                element.clear()
+                element.send_keys(text)
+                return
+            except Exception:
+                time.sleep(0.5)
         element = self.wait.until(EC.element_to_be_clickable(locator))
         element.clear()
         element.send_keys(text)
